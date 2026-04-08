@@ -1,0 +1,15 @@
+<!-- serviceapp/templates/serviceapp/unauthorized.html -->
+{% extends "serviceapp/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unauthorized</title>
+</head>
+<body>
+    <h1>Access Denied</h1>
+    <p>You do not have permission to access this page.</p>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

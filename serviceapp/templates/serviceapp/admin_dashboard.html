@@ -1,0 +1,106 @@
+{% extends "serviceapp/base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- 🔝 Top Bar -->
+<div class="top-bar">
+    <h2>Welcome, Admin/Manager 👋</h2>
+
+    <div>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+</div>
+
+<!-- 🧭 Dashboard -->
+<div class="dashboard-container">
+
+    <div class="card-container">
+
+        <a href="{% url 'service_records' %}" class="card">
+            <h3>📋 Service Records</h3>
+            <p>View and manage all service records</p>
+        </a>
+
+        <a href="{% url 'service_due' %}" class="card">
+            <h3>⏰ Service Due</h3>
+            <p>Check vehicles that need servicing</p>
+        </a>
+
+        <a href="{% url 'under_service' %}" class="card">
+            <h3>🛠 Under Maintenance</h3>
+            <p>Track vehicles under maintenance</p>
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    
+
+    /* Top bar */
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: #1e3a8a;
+        color: white;
+    }
+
+    .logout-btn {
+        background: #dc2626;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .logout-btn:hover {
+        background: #b91c1c;
+    }
+
+    /* Dashboard */
+    .dashboard-container {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    /* Cards */
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 250px;
+        text-decoration: none;
+        color: #333;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+        color: #1e3a8a;
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #555;
+    }
+</style>
+
+{% endblock %}

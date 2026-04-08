@@ -1,0 +1,104 @@
+{% extends "serviceapp/base.html" %}
+{% load static %}
+{% block title %}{% if form.instance.pk %}Edit{% else %}Add{% endif %} Record{% endblock %}
+
+{% block content %}
+
+<!-- 🔝 Top Bar -->
+<div class="top-bar">
+    <h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Service Record ✍️</h2>
+
+    <div>
+        <a href="{% url 'dashboard' %}" class="back-btn">⬅ Dashboard</a>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+</div>
+
+<div class="form-container">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="save-btn">Save</button>
+    </form>
+
+</div>
+
+<style>
+    
+    /* Top bar */
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: #1e3a8a;
+        color: white;
+    }
+
+    .back-btn {
+        background: #2563eb;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .back-btn:hover {
+        background: #1e40af;
+    }
+
+    .logout-btn {
+        background: #dc2626;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .logout-btn:hover {
+        background: #b91c1c;
+    }
+
+    /* Form */
+    .form-container {
+        padding: 40px;
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    }
+
+    form p {
+        margin-bottom: 15px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    /* Save button */
+    .save-btn {
+        background: #16a34a;
+        color: white;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .save-btn:hover {
+        background: #15803d;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "serviceapp/base.html" %}
+{% block title %}Service Due{% endblock %}
+
+{% block content %}
+
+<!-- 🔝 Top Bar -->
+<div class="top-bar">
+    <h2>Service Due ⏰</h2>
+
+    <div>
+        <a href="{% url 'dashboard' %}" class="back-btn">⬅ Dashboard</a>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    {% if records %}
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Owner</th>
+                <th>Bike Model</th>
+                <th>Reg No</th>
+                <th>Contact</th>
+                <th>Last Serviced</th>
+                <th>Days Exceeded</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.owner_name }}</td>
+                <td>{{ record.bike_model }}</td>
+                <td>{{ record.reg_no }}</td>
+                <td>{{ record.contact }}</td>
+                <td>{{ record.last_serviced_date }}</td>
+                <td>{{ record.days_exceeded }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No service due records found.</p>
+    {% endif %}
+
+</div>
+
+<style>
+    /* REMOVE ANY body {} from here ❌ */
+
+    /* Top bar */
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: #1e3a8a;
+        color: white;
+    }
+
+    .back-btn {
+        background: #2563eb;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .logout-btn {
+        background: #dc2626;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    /* Container */
+    .container {
+        padding: 40px;
+    }
+
+    /* Table */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .styled-table th {
+        background: #1e3a8a;
+        color: white;
+        padding: 12px;
+    }
+
+    .styled-table td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .styled-table tr:hover {
+        background: #f3f4f6;
+    }
+</style>
+
+{% endblock %}

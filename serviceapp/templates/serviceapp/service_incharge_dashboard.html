@@ -1,0 +1,150 @@
+{% extends 'serviceapp/base.html' %}
+{% block content %}
+
+<!-- 🔝 Top Bar -->
+<div class="top-bar">
+    <h2>Service Incharge Dashboard 👨‍🔧</h2>
+
+    <div>
+        <a href="{% url 'dashboard' %}" class="back-btn">⬅ Dashboard</a>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard-container">
+
+    <!-- 🔍 Search -->
+    <div class="search-box">
+        <input type="text" id="under-service-search" placeholder="Search by Reg No or Progress..." />
+    </div>
+
+    <!-- 📋 Table -->
+    {% if under_service_records %}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Reg No</th>
+                    <th>Progress</th>
+                    <th>Last Serviced Date</th>
+                </tr>
+            </thead>
+            <tbody id="under-service-table">
+                {% for record in under_service_records %}
+                    <tr>
+                        <td>{{ record.id }}</td>
+                        <td>{{ record.bike_number }}</td>
+                        <td>{{ record.progress }}</td>
+                        <td>{{ record.last_serviced_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No records under maintenance.</p>
+    {% endif %}
+
+</div>
+
+<!-- 🔍 Search Script -->
+<script>
+    document.getElementById('under-service-search').addEventListener('input', function(e) {
+        let searchTerm = e.target.value.toLowerCase();
+        let rows = document.querySelectorAll('#under-service-table tr');
+
+        rows.forEach(function(row) {
+            let regNo = row.cells[1].textContent.toLowerCase();
+            let progress = row.cells[2].textContent.toLowerCase();
+
+            if (regNo.includes(searchTerm) || progress.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<style>
+    
+
+    /* Top bar */
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: #dc2626;
+        color: white;
+    }
+
+    .back-btn {
+        background: #2563eb;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .back-btn:hover {
+        background: #1e40af;
+    }
+
+    .logout-btn {
+        background: #111827;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .logout-btn:hover {
+        background: #000;
+    }
+
+    /* Container */
+    .dashboard-container {
+        padding: 40px;
+    }
+
+    /* Search */
+    .search-box {
+        margin-bottom: 20px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    /* Table */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .styled-table th {
+        background: #dc2626;
+        color: white;
+        padding: 12px;
+    }
+
+    .styled-table td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .styled-table tr:hover {
+        background: #f3f4f6;
+    }
+</style>
+
+{% endblock %}

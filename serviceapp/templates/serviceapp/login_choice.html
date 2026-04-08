@@ -1,0 +1,110 @@
+{% extends "serviceapp/base.html" %}
+{% load static %}
+
+{% block title %}Login Choice{% endblock %}
+
+{% block content %}
+
+<div class="main-container">
+
+    <div class="text-box">
+        <div class="top-text">
+            <h2>Welcome to BikeTracker 🚀</h2>
+            <h1>Rush the Adrenaline</h1>
+        </div>
+
+        <div class="middle-text">
+            <p>Choose your login type to proceed:</p>
+        </div>
+    </div>
+
+    <div class="login-choice-container">
+        <a href="{% url 'admin_login' %}" class="btn admin">Admin / Manager</a>
+        <a href="{% url 'associate_login' %}" class="btn associate">Associate</a>
+        <a href="{% url 'service_incharge_login' %}" class="btn service">Service Incharge</a>
+    </div>
+
+</div>
+
+<style>
+
+.main-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Glass Box (SAFE version) */
+.text-box {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 45px;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 40px;
+
+    /* shadow for premium feel */
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Typography */
+.top-text h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.top-text h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.middle-text p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* Buttons */
+.login-choice-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Button design */
+.btn {
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    min-width: 200px;
+
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Hover animation */
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Colors */
+.admin {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.associate {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.service {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+</style>
+
+{% endblock %}
